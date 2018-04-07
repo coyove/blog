@@ -1,0 +1,116 @@
+/* 2013 - Ana Guerrero Lopez <ana@debian.org> */
+
+body {
+    font-family: tahoma,verdana,sans-serif;
+    font-size: 14px;
+}
+
+code {
+    font-family: "Lucida Console", Monaco, monospace;
+    white-space: pre-wrap;
+}
+
+p {
+    padding: 10px;
+}
+
+a:link {
+   color: #da803a;
+   text-decoration: none
+}
+
+a:active {
+   color: #000000;
+   text-decoration: none
+}
+
+a:visited {
+    color: #da803a;
+	text-decoration: none
+}
+
+a:hover {
+    color: #e0843d;
+	text-decoration: underline
+}
+
+
+#wrapper {
+    margin: 0 auto;
+}
+
+#header {
+    float: left;
+    height: 125px;
+}
+
+/* This is for having "Bits from Debian" more aligned to the center */
+#header p {
+    font-size: 36px;
+	margin-left: 2.5cm;
+}
+
+#content {
+    float: left;
+}
+
+#rightcolumn {
+    background: #fff;
+    float: left;
+}
+
+#footer {
+    height: 30px;
+    text-align:center;
+    clear: both;
+}
+
+.article h1 {
+    color: #da803a;
+}
+
+.article .content {
+    max-height: 800px;
+    overflow: hidden;
+}
+
+.lateral h1 {
+    font-size: 15px;
+	padding-left: 1em;
+	padding-top: 0em;
+}
+
+.nocss {
+    display: none;
+}
+
+/* prevent horizontal scrolling in small viewports */
+div#content, img {
+	max-width: 100%;
+}
+div.highlight {
+	overflow-x: auto;
+}
+
+/* prevent horizontal "scrolling" in too big viewports */
+@media screen and (min-width: 940px) {
+    #wrapper {
+        width: 940px;
+    }
+
+    #header {
+        width: 940px;
+    }
+
+    #content {
+        width: 690px;
+    }
+
+    #rightcolumn {
+        width: 250px;
+    }
+
+    #footer {
+        width: 940px;
+    }
+}
