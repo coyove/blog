@@ -10,7 +10,7 @@ code {
     white-space: pre-wrap;
 }
 
-p {
+.article ._content {
     padding: 10px;
 }
 

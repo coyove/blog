@@ -1,0 +1,32 @@
+<!-- title: HTTP模式 -->
+<!-- tag: goflyway -->
+<!-- tag: http -->
+
+作为开了博客的第一篇文章，就来讲讲我一直在使用的一个模式：HTTP。<br><br>
+
+关于怎样更快的翻墙，一直以来有三种主流的方法：
+<ul>
+    <li>更快的vps，比如香港／台湾／新加坡／美国CN2</li>
+    <li>榨干vps的带宽，比如锐速／bbr</li>
+    <li>使用中转服务，比如微林／国内vps</li>
+</ul>
+<p>
+在这其中，第三条是非常土豪的做法：微林的价格如果不常看视频的话勉强还可以接受，但众所周知国内的带宽贵得惊人（1mbps的小水管这里就不讨论了，作站还可以，看油管高清真的很勉强），价格根本不成线性比例，一台5mbps的主机放到国外都可以买一台独服玩了。在这样的前提下还选择国内vps中转的人，确实是不差钱了。<br><br>
+
+goflyway的http模式本质上是一个中间人代理，对于HTTPS的流量，将其拦截并拆分成HTTP请求发出。这样带来的性能问题是很大的，因为HTTPS可以双工传输信息，而HTTP则是严格按照“请求-响应”的模式工作。但带来的好处也非常巨大：支持HTTPS隧道的代理可谓少之又少，但HTTP代理则遍地都是。随便找一个免费HTTP代理，就可以让goflyway这样连接服务端：
+</p>
+
+<code>./goflyway -up=http://proxy:port/server:port</code>
+
+<p>
+    中转HTTP流量也变得更简单了，因为其传输性质，我们不再需要一台root权限的vps，只需要一个虚拟主机空间，挂上一个代理脚本即可。<br><br>
+    虚拟主机空间的价格普遍比vps低得多，比如百度云引擎（BAE）的一个最小实例一月只需要6元，但却提供了5mbps的带宽。goflyway针对这种专门提供了代理脚本供用户部署到BAE上。<br>
+    <ol>
+        <li>创建一个BAE实例（python）并将代码仓库（git）克隆到本地</li>
+        <li>将cmd/mitm-relay/index.py加入该repo，并提交部署</li>
+        <li>goflyway使用命令连接：-up=fwd://xxx.duapp.com:80/proxy:port，xxx.duapp.com为你的BAE实例的访问地址，proxy为服务端地址</li>
+        <li>需要注意的是，BAE对并发连接数有限制（20左右），超出的话实例会被限制资源，导致代理暂时失效。</li>
+    </ol>
+    一个月6元5mbps，真的还要啥自行车。（下图为垃圾上海长城宽带）
+    <img src="http://ww1.sinaimg.cn/large/4dc7e139ly1fq4gs5qfvxj20ia06hdia.jpg"/>
+</p>
