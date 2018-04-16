@@ -20,6 +20,8 @@ import (
 const (
 	ARTICLES_PER_PAGE = 5
 	DEFAULT_AUTHOR    = "admin"
+	SITE_NAME         = "wipe"
+	SITE_URL          = "https://blog.wipe.pw"
 )
 
 type entry struct {
@@ -87,6 +89,7 @@ func main() {
 	}
 
 	filepath.Walk("raw", func(path string, info os.FileInfo, err error) error {
+		path = strings.Replace(path, "\\", "/", -1)
 		if info.IsDir() || !strings.HasSuffix(path, ".html") {
 			return nil
 		}
@@ -98,7 +101,8 @@ func main() {
 
 		e := parse(string(html))
 		e.URI = path[4:]
-		hpath := "docs/blog" + path[3:] + "." + e.Hash
+		opath := "docs/blog" + path[3:]
+		hpath := opath + "." + e.Hash
 		if _, err := os.Stat(hpath); err == nil {
 			log.Println("unmodified content:", path, ", pass")
 			h, err := os.Open(hpath)
@@ -112,6 +116,17 @@ func main() {
 		} else {
 			log.Println("new content:", path)
 			os.MkdirAll(dir(hpath), 0777)
+
+			// before creating new, we search and delete old
+			filepath.Walk(dir(hpath), func(path string, info os.FileInfo, err error) error {
+				path = strings.Replace(path, "\\", "/", -1)
+				if strings.HasPrefix(path, opath+".") {
+					log.Println("remove old:", path)
+					os.Remove(path)
+				}
+				return nil
+			})
+
 			h, err := os.Create(hpath)
 			if err != nil {
 				panic(err)
@@ -194,6 +209,30 @@ func main() {
 		os.MkdirAll(path, 0777)
 		renderPages(entries, path, "@"+author)
 	}
+
+	rssxml := []string{
+		`<?xml version="1.0" encoding="UTF-8"?>`,
+		`<rss version="2.0"><channel>`,
+		`<title>`, SITE_NAME, `</title>`,
+		`<pubDate>`, time.Now().Format(time.RFC1123Z), `</pubDate>`,
+		`<description>`, SITE_URL, `</description>`,
+		`<link>`, SITE_URL, `</link>`,
+	}
+
+	sort.Slice(entries, func(i, j int) bool { return entries[i].TStamp > entries[j].TStamp })
+	for _, e := range entries[:int(math.Min(float64(len(entries)), 20.0))] {
+		rssxml = append(rssxml,
+			`<item>`,
+			`<title>`, e.Title, `</title>`,
+			`<pubDate>`, time.Unix(0, e.TStamp).Format(time.RFC1123Z), `</pubDate>`,
+			`<link>`, SITE_URL, "/", e.URI, `</link>`,
+			`<description>`, `<![CDATA[`, e.Content, `"]]>`, `</description>`,
+			`</item>`,
+		)
+	}
+
+	rssxml = append(rssxml, "</channel></rss>")
+	ioutil.WriteFile("docs/rss.xml", []byte(strings.Join(rssxml, "")), 0777)
 
 	for _, e := range entries {
 		os.MkdirAll("docs/blog/"+dir(e.URI), 0777)

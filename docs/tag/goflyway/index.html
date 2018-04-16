@@ -24,6 +24,36 @@
 
     <div class="article">
         <div class="content-title">
+            <a href="/blog/goflyway2.html"><h1>goflyway 本地端口绑定</h1></a>
+            Mon, 16 Apr 2018 13:08:56
+
+            by <a class="url fn" href="/author/admin/">admin</a>
+
+            
+            with tags 
+            
+                <a href="/tag/goflyway">goflyway</a> 
+            
+            
+        </div>
+
+        <div class="_content  content"><!-- title: goflyway 本地端口绑定 -->
+<!-- tag: goflyway -->
+
+<P>
+    目前在gdev分支下实现了local port forawrding，用过 ssh -L 的同学应该已经懂了。用法：
+</P>
+
+<code>./goflyway -up="..." -l=":9000" -bind="ip:port"</code> 
+
+<p>
+    这样访问本地9000端口的请求会通过goflyway转发至ip:port。
+</p></div>
+        <hr>
+    </div>
+
+    <div class="article">
+        <div class="content-title">
             <a href="/blog/goflyway1.html"><h1>HTTP模式</h1></a>
             Sat, 07 Apr 2018 22:34:03
 
@@ -94,7 +124,7 @@ goflyway的http模式本质上是一个中间人代理，对于HTTPS的流量，
             <h1>标签</h1>
                 <ul class="nav-list">
                     
-                    <li><a href="/tag/goflyway">goflyway</a> (1)</li>
+                    <li><a href="/tag/goflyway">goflyway</a> (2)</li>
                     
                     <li><a href="/tag/http">http</a> (1)</li>
                     
@@ -108,6 +138,7 @@ goflyway的http模式本质上是一个中间人代理，对于HTTPS的流量，
                 <li><a href="/">主页</a></li>
                 <li><a href="/blog/about.html">关于</a></li>
                 <li><a href="https://github.com/coyove/blog">源代码</a></li>
+                <li><a href="/rss.xml">RSS</a></li>
                 </ul>
             </div>
 

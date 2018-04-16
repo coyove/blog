@@ -1,0 +1,12 @@
+<!-- title: goflyway 本地端口绑定 -->
+<!-- tag: goflyway -->
+
+<P>
+    目前在gdev分支下实现了local port forawrding，用过 ssh -L 的同学应该已经懂了。用法：
+</P>
+
+<code>./goflyway -up="..." -l=":9000" -bind="ip:port"</code> 
+
+<p>
+    这样访问本地9000端口的请求会通过goflyway转发至ip:port。
+</p>

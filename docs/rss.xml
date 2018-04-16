@@ -1,45 +1,15 @@
-<!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title>Wipe: #http - Page 1</title>
-    <meta name="description" content="">
-    <meta name="author" content="coyove">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>wipe</title><pubDate>Mon, 16 Apr 2018 13:13:25 +0800</pubDate><description>https://blog.wipe.pw</description><link>https://blog.wipe.pw</link><item><title>goflyway 本地端口绑定</title><pubDate>Mon, 16 Apr 2018 13:08:56 +0800</pubDate><link>https://blog.wipe.pw/goflyway2.html</link><description><![CDATA[<!-- title: goflyway 本地端口绑定 -->
+<!-- tag: goflyway -->
 
-    <link rel="icon" href="/logo.png">
-    <link href="/style.css" rel="stylesheet">
-</head>
+<P>
+    目前在gdev分支下实现了local port forawrding，用过 ssh -L 的同学应该已经懂了。用法：
+</P>
 
-<body>
+<code>./goflyway -up="..." -l=":9000" -bind="ip:port"</code> 
 
-<div id="wrapper">
-    <div id="header">
-        <a href="/"><img align="left" class="logo" src="/logo.png" alt="logo" style="margin-top:20px;height:100px"></a>
-        <p>Wipe <span style="color:white">your ass</span></p>
-    </div>
-
-    <hr class="nocss">
-    <div id="content">
-
-
-    <div class="article">
-        <div class="content-title">
-            <a href="/blog/goflyway1.html"><h1>HTTP模式</h1></a>
-            Sat, 07 Apr 2018 22:34:03
-
-            by <a class="url fn" href="/author/admin/">admin</a>
-
-            
-            with tags 
-            
-                <a href="/tag/goflyway">goflyway</a> 
-            
-                <a href="/tag/http">http</a> 
-            
-            
-        </div>
-
-        <div class="_content  content"><!-- title: HTTP模式 -->
+<p>
+    这样访问本地9000端口的请求会通过goflyway转发至ip:port。
+</p>"]]></description></item><item><title>HTTP模式</title><pubDate>Sat, 07 Apr 2018 22:34:03 +0800</pubDate><link>https://blog.wipe.pw/goflyway1.html</link><description><![CDATA[<!-- title: HTTP模式 -->
 <!-- tag: goflyway -->
 <!-- tag: http -->
 
@@ -70,55 +40,6 @@ goflyway的http模式本质上是一个中间人代理，对于HTTPS的流量，
     </ol>
     一个月6元5mbps，真的还要啥自行车。（下图为垃圾上海长城宽带）
     <img src="http://ww1.sinaimg.cn/large/4dc7e139ly1fq4gs5qfvxj20ia06hdia.jpg"/>
-</p></div>
-        <hr>
-    </div>
+</p>"]]></description></item><item><title>关于</title><pubDate>Sat, 07 Apr 2018 21:16:35 +0800</pubDate><link>https://blog.wipe.pw/about.html</link><description><![CDATA[<!-- title: 关于 -->
 
-
-    <p class="paginator">
-        
-        
-        Page 1 / 1
-
-        
-    </p>
-
-    
-
-    </div>
-
-    <div id="rightcolumn">
-
-            <hr class="nocss">
-            <div class="lateral" style="padding: 8px 0;">
-            <h1>标签</h1>
-                <ul class="nav-list">
-                    
-                    <li><a href="/tag/goflyway">goflyway</a> (2)</li>
-                    
-                    <li><a href="/tag/http">http</a> (1)</li>
-                    
-                </ul>
-            </div>
-
-            <hr class="nocss">
-            <div class="lateral" style="padding: 8px 0;">
-            <h1>其它</h1>
-                <ul class="nav-list">
-                <li><a href="/">主页</a></li>
-                <li><a href="/blog/about.html">关于</a></li>
-                <li><a href="https://github.com/coyove/blog">源代码</a></li>
-                <li><a href="/rss.xml">RSS</a></li>
-                </ul>
-            </div>
-
-    </div>
-
-    <hr class="nocss">
-    <div id="footer">
-        <p>Man's reach, exceeds his imagination</p>
-    </div>
-
-</div>
-
-</body></html>
+主要是关于goflyway的一些更新"]]></description></item></channel></rss>
