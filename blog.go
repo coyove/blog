@@ -56,6 +56,7 @@ func parse(html string) *entry {
 			e.Tags[v] = true
 		}
 	}
+	html = strings.Replace(html, "\r\n", "\n", -1)
 	e.Hash = fmt.Sprintf("%x", sha1.Sum([]byte(html)))[:8]
 	e.TStamp = time.Now().UnixNano()
 	e.Date = time.Now().Format("Mon, 02 Jan 2006 15:04:05")
